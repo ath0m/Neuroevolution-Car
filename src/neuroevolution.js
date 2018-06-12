@@ -23,9 +23,9 @@ function initNeat() {
             // methods.mutation.SUB_BACK_CONN
         ],
         popsize: 20,
-        mutationRate: 0.5,
+        mutationRate: 0.3,
         elitism: 5,
-        network: new architect.Random(5, 3, 1)
+        network: new architect.Random(5, 0, 1)
     });
 }
 

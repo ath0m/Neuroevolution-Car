@@ -7,7 +7,7 @@ class Car {
         this.running = true;
         this.position = createVector(x, y);
         this.angle = angle;
-        this.velocity = 5;
+        this.velocity = 4;
 
         this.score = 0;
         this.lastCheckpoint = -1;
@@ -80,12 +80,11 @@ class Car {
             return;
         }
 
-        let steer = this.think() - 0.5;
-        console.log(steer);
-        steer = map(steer, 0, 1, -PI/200, PI/200);
+        let steer = (this.think() - 1.0) / 100.;
+        // steer = map(steer, 0, 1, -PI/200, PI/200);
 
-        // console.log(steer);
-        // steer = constrain(steer, -PI/200, PI/200);
+        console.log(steer);
+        steer = constrain(steer, -PI/100, PI/100);
 
         this.angle -= steer;
 

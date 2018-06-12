@@ -22,7 +22,7 @@ function setup() {
     runBestButton = select('#best');
     // runBestButton.mousePressed(toggleState);
 
-    createCheckpoints(PI / 15);
+    createCheckpoints(PI / 25);
 
     initNeat();
     startEvaluation();
@@ -42,7 +42,7 @@ function draw() {
     lines.map(l => line(...l));
 
     drawWalls();
-    drawCheckpoints();
+    // drawCheckpoints();
     drawCars();
 
     for (let i = 0; i < cycles; i++) {
