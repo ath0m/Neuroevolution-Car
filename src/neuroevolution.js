@@ -1,6 +1,6 @@
 var Neat    = neataptic.Neat;
-var Methods = neataptic.methods;
-var Architect = neataptic.architect;
+var methods = neataptic.methods;
+var architect = neataptic.architect;
 
 var neat;
 
@@ -8,13 +8,24 @@ function initNeat() {
     neat = new Neat(5, 1, null, 
     {
         mutation: [
-            Methods.mutation.MOD_WEIGHT,
-            Methods.mutation.MOD_BIAS,
+            // methods.mutation.ADD_NODE,
+            // methods.mutation.SUB_NODE,
+            // methods.mutation.ADD_CONN,
+            // methods.mutation.SUB_CONN,
+            methods.mutation.MOD_WEIGHT,
+            methods.mutation.MOD_BIAS,
+            methods.mutation.MOD_ACTIVATION,
+            // methods.mutation.ADD_GATE,
+            // methods.mutation.SUB_GATE,
+            // methods.mutation.ADD_SELF_CONN,
+            // methods.mutation.SUB_SELF_CONN,
+            // methods.mutation.ADD_BACK_CONN,
+            // methods.mutation.SUB_BACK_CONN
         ],
-        popsize: 10,
-        mutationRate: 0.4,
-        elitism: 2,
-        network: new Architect.Random(5, 3, 1)
+        popsize: 20,
+        mutationRate: 0.5,
+        elitism: 5,
+        network: new architect.Random(5, 3, 1)
     });
 }
 
@@ -24,7 +35,7 @@ function startEvaluation() {
     for(var genome in neat.population){
         genome = neat.population[genome];
 
-        const car = new Car(random(675, 750), 450, -PI/2, genome);
+        const car = new Car(random(580, 630), 400, -PI/2, genome);
         cars.push(car);
     }
 }

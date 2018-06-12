@@ -1,23 +1,23 @@
 class Car {
     constructor(x, y, angle = 0.0, genome) {
         this.size = {
-            width: 40,
-            height: 20
+            width: 30,
+            height: 15
         };
         this.running = true;
         this.position = createVector(x, y);
         this.angle = angle;
-        this.velocity = 3;
+        this.velocity = 5;
 
         this.score = 0;
         this.lastCheckpoint = -1;
 
         this.sensors = [
-            {angle:  0.0       , length: 200},
-            {angle:  PI / 7.0  , length: 120},
-            {angle: -PI / 7.0  , length: 120},
-            {angle:  PI / 4.0  , length: 80},
-            {angle: -PI / 4.0  , length: 80}
+            {angle:  0.0       , length: 300},
+            {angle:  PI / 7.0  , length: 200},
+            {angle: -PI / 7.0  , length: 200},
+            {angle:  PI / 3.0  , length: 120},
+            {angle: -PI / 3.0  , length: 120}
         ];
 
         this.brain = genome;
@@ -80,13 +80,14 @@ class Car {
             return;
         }
 
-        let steer = this.think();
-        steer = map(steer, 0, 1, -PI/100, PI/100);
+        let steer = this.think() - 0.5;
+        console.log(steer);
+        steer = map(steer, 0, 1, -PI/200, PI/200);
 
         // console.log(steer);
         // steer = constrain(steer, -PI/200, PI/200);
 
-        this.angle += steer;
+        this.angle -= steer;
 
         let dx = cos(this.angle) * this.velocity;
         let dy = sin(this.angle) * this.velocity;
