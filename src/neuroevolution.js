@@ -9,7 +9,6 @@ function initNeat() {
     neat = new Neat(5, 1, null, 
     {
         mutation: [
-            // methods.mutation.FFW
             methods.mutation.ADD_NODE,
             methods.mutation.SUB_NODE,
             methods.mutation.ADD_CONN,
@@ -19,10 +18,6 @@ function initNeat() {
             methods.mutation.MOD_ACTIVATION,
             methods.mutation.ADD_GATE,
             methods.mutation.SUB_GATE,
-            // methods.mutation.ADD_SELF_CONN,
-            // methods.mutation.SUB_SELF_CONN,
-            // methods.mutation.ADD_BACK_CONN,
-            // methods.mutation.SUB_BACK_CONN
         ],
         popsize: 20,
         mutationRate: 0.5,
@@ -82,15 +77,6 @@ function runBestModel() {
             break;
         case "3":
             model = JSON.parse(model3);
-            break;
-        case "4":
-            model = JSON.parse(model4);
-            break;
-        case "5":
-            model = JSON.parse(model5);
-            break;
-        case "6":
-            model = JSON.parse(model6);
             break;
     }
 

@@ -29,7 +29,7 @@ Opis funkcji panelu
 * **best car score** - najlepszy wynik spośród obecnie aktywnych samochodów
 * **highest world score** - najlepszy ogólny wynik na danym torze w trakcie całej ewolucji
 * **timer** - licznik czasu (jeśli populacja nie wymrze do danego czasu to jest siłowo ewoluowana)
-* **world** - wybór torów
+* **track** - wybór torów
 * **model** - wybór gotowych modeli do załadowania `T` (current oznacza najlepszy z całej ewolucji)
 
 Skróty klawiszowe
