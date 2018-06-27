@@ -1,12 +1,12 @@
 <html>
 
 <head>
-    <!-- <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://marvl.infotech.monash.edu/webcola/cola.v3.min.js"></script> -->
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://marvl.infotech.monash.edu/webcola/cola.v3.min.js"></script>
 
     <script src="https://rawgit.com/wagenaartje/neataptic/master/dist/neataptic.js"></script>
-    <!-- <script src="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.js"></script> -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.css"> -->
+    <script src="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
@@ -17,26 +17,58 @@
 
 <body>
     <div id="canvascontainer"></div>
+    <div class="container">
+        <div class="row">
+            <svg class="draw" width="700px" height="540px"/>
+        </div>
+    </div>
     <p>
         speed:
         <input id="speedSlider" type="range" min="1" max="200" value="1">
         <span id="speed">1</span>
-        <br/> high score:
+        <br/> best car score:
         <span id="hs">0</span>
-        <br/> all time high score:
+        <br/> highest world score:
         <span id="ahs">0</span>
-        <br/>
+        <br/> world: 
         <select id="worlds">
             <option value="1">World 1</option>
             <option value="2">World 2</option>
             <option value="3">World 3</option>
         </select>
-        <br/>
+        <br/> model:
         <select id="models">
             <option value="0">Current</option>
             <option value="1">Model 1</option>
+            <option value="2">Model 2</option>
+            <option value="3">Model 3</option>
+            <option value="4">Model 4</option>
+            <option value="5">Model 5</option>
+            <option value="6">Model 6</option>
         </select>
     </p>
+    <p >
+        Shortcuts:
+        <br/> C - draw checkpoints (deprecated!)
+        <br/> N - next generation
+        <br/> F - follow best car
+        <br/> P - pause / unpasue
+        <br/> D - debug
+        <br/> S - save best model
+        <br/> R - restart evolution
+        <br/> T - switch between evolution and selected model
+        <br/> V - show network of best car
+        <br/> W - show network of best model
+    </p>
+
+    <style>
+        .container {
+            position: absolute;
+            left: 550px;
+            top: 7px;
+            border: solid;
+        }
+    </style>
 
     <script src="src/sketch.js"></script>
     <script src="src/models.js"></script>

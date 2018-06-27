@@ -27,7 +27,7 @@ function initNeat() {
         popsize: 20,
         mutationRate: 0.5,
         elitism: 5,
-        network: new architect.Random(5, 3, 3, 1)
+        network: new architect.Random(5, 3, 1)
     });
 }
 
@@ -76,6 +76,21 @@ function runBestModel() {
             break;
         case "1":
             model = JSON.parse(model1);
+            break;
+        case "2":
+            model = JSON.parse(model2);
+            break;
+        case "3":
+            model = JSON.parse(model3);
+            break;
+        case "4":
+            model = JSON.parse(model4);
+            break;
+        case "5":
+            model = JSON.parse(model5);
+            break;
+        case "6":
+            model = JSON.parse(model6);
             break;
     }
 

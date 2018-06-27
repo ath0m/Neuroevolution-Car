@@ -29,6 +29,18 @@ function draw() {
   
     if (follow) { followBestCar(cars); }
     if (drawingCheckpoints) { drawCheckpoints(checkpoints); }
+    if (visualise) {
+        let car = cars.reduce((prev, next) => {
+            return prev.score > next.score ? prev : next;
+        }, cars[0]);
+        drawGraph(car.brain.graph(400, 500), '.draw');
+        visualise = false;
+    }
+    if (visualiseBest) {
+        let model = Network.fromJSON(highestScoreModel);
+        drawGraph(model.graph(400, 500), '.draw');
+        visualiseBest = false;
+    }
 
     drawWalls(world.walls);
     drawCars(cars, world.walls);

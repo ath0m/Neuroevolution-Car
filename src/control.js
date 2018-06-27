@@ -11,6 +11,8 @@ var drawingCheckpoints = false;
 var follow = false;
 var pause = false;
 var training = true;
+var visualise = false;
+var visualiseBest = false;
 
 let highScore = 0;
 var highestScore = 0;
@@ -85,6 +87,14 @@ function control() {
         case 'T':
             training = !training;
             cars.map(car => car.running = false);
+            break;
+        case 'V':
+            visualise = true;
+            loop();
+            break;
+        case 'W':
+            visualiseBest = true;
+            loop();
             break;
     }
 }
