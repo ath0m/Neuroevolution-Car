@@ -9,6 +9,8 @@ function setup() {
 
     rectMode(CENTER);
 
+    createCheckpoints(PI/20);
+
     initNeat();
 
     initControls();

@@ -19,10 +19,10 @@ function initNeat() {
             methods.mutation.MOD_ACTIVATION,
             methods.mutation.ADD_GATE,
             methods.mutation.SUB_GATE,
-            methods.mutation.ADD_SELF_CONN,
-            methods.mutation.SUB_SELF_CONN,
-            methods.mutation.ADD_BACK_CONN,
-            methods.mutation.SUB_BACK_CONN
+            // methods.mutation.ADD_SELF_CONN,
+            // methods.mutation.SUB_SELF_CONN,
+            // methods.mutation.ADD_BACK_CONN,
+            // methods.mutation.SUB_BACK_CONN
         ],
         popsize: 20,
         mutationRate: 0.5,
