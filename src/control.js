@@ -6,6 +6,7 @@ let worldsSelect;
 let modelsSelect;
 let generationSpan;
 let timerSpan;
+let networkGraphSVG;
 
 var debug = false;
 var drawingCheckpoints = false;
@@ -31,6 +32,8 @@ function initControls() {
     worldsSelect.changed(worldSelected);
 
     modelsSelect = select('#models');
+
+    networkGraphSVG = select('.draw');
 }
 
 function worldSelected() {
@@ -96,6 +99,9 @@ function control() {
         case 'W':
             visualiseBest = true;
             loop();
+            break;
+        case 'E':
+            networkGraphSVG.html('');
             break;
     }
 }
