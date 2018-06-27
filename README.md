@@ -2,7 +2,7 @@
 
 ##### Celem projektu jest pobawienie się neuroewolucją i sprawdzenie jak sobie poradzi z problemem autonomicznej jazdy w bardzo prostym środowisku
 
-![](screenshots\screenshot1.PNG)
+![](screenshots/screenshot1.PNG)
 
 
 
@@ -16,7 +16,7 @@ Punkty przyznawane są za aktywny czas przebywania na torze, czyli za każdą ko
 
 Czujniki podają wartość minimalną ze swojej długość i odległości do najbliższej ściany
 
-![](screenshots\screenshot3min.PNG)
+![](screenshots/screenshot3min.PNG)
 
 Samochód ma stałą prędkość i mówi jedynie o jaki kąt chciałby skorygować swoją obecną trasę. Samochody nie widzą siebie nawzajem.
 
@@ -55,7 +55,7 @@ Szczegółowy opis działania biblioteki [Instinct: neuro-evolution on steroids]
 
 Wygenerowana sieć różni się od takich które znamy, a bardziej przypomina graf przepływów. Ogólnie istotniejsze są same komórki, a nie warstwy.
 
-![](screenshots\screenshot4.PNG)
+![](screenshots/screenshot4.PNG)
 
 Ewolucja zaczyna się od prostej losowej sieci o 5 wejściach i 1 wyjściu. Następnie przeprowadzane są operacja krzyżowania i mutacji.
 
@@ -85,12 +85,12 @@ Jednym z najwiekszych wyzwań w przypadku generowania sieci neuronowej jakie nap
 
 #### Tor 1
 
-![](screenshots\world1.gif)
+![](screenshots/world1.gif)
 
 #### Tor 2
 
-![](screenshots\world2.gif)
+![](screenshots/world2.gif)
 
 #### Tor 3
 
-![](screenshots\world3.gif)
+![](screenshots/world3.gif)
