@@ -4,7 +4,8 @@ let highScoreSpan;
 let highestScoreSpan;
 let worldsSelect;
 let modelsSelect;
-let runBestButton;
+let generationSpan;
+let timerSpan;
 
 var debug = false;
 var drawingCheckpoints = false;
@@ -21,10 +22,10 @@ var highestScoreModel = undefined;
 function initControls() {
     speedSlider = select('#speedSlider');
     speedSpan = select('#speed');
+    generationSpan = select('#generation');
     highScoreSpan = select('#hs');
     highestScoreSpan = select('#ahs');
-    runBestButton = select('#best');
-    // runBestButton.mousePressed(toggleState);
+    timerSpan = select('#timer');
 
     worldsSelect = select('#worlds');
     worldsSelect.changed(worldSelected);
@@ -108,4 +109,7 @@ function updateScores() {
         highestScoreModel = best.toJSON();
         highestScoreSpan.html(highestScore);
     }
+
+    generationSpan.html(neat.generation);
+    timerSpan.html(frameCount - timer);
 }
