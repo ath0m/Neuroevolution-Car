@@ -1,75 +1,57 @@
+var world;
 var cars = [];
 
-let speedSlider;
-let speedSpan;
-let highScoreSpan;
-let allTimeHighScoreSpan;
-
-let highScore = 0;
-
-let runBest = false;
-let runBestButton;
+var canvas;
 
 function setup() {
-    var canvas = createCanvas(900, 900);
+    canvas = createCanvas(540, 540);
     canvas.parent('canvascontainer');
+
     rectMode(CENTER);
 
-    speedSlider = select('#speedSlider');
-    speedSpan = select('#speed');
-    highScoreSpan = select('#hs');
-    allTimeHighScoreSpan = select('#ahs');
-    runBestButton = select('#best');
-    // runBestButton.mousePressed(toggleState);
-
-    createCheckpoints(PI / 25);
-
     initNeat();
-    startEvaluation();
 
+    initControls();
+    worldSelected();
+
+    startEvaluation();
 }
+
+var timer = 0;
 
 function draw() {
     background(61);
 
+    scale(0.6);
+
     let cycles = speedSlider.value();
     speedSpan.html(cycles);
   
+    if (follow) { followBestCar(cars); }
+    if (drawingCheckpoints) { drawCheckpoints(checkpoints); }
 
-    // scale(2);
-    // translate(-car.position.x + 225, -car.position.y + 225);
+    drawWalls(world.walls);
+    drawCars(cars, world.walls);
 
-    lines.map(l => line(...l));
+    for (let i = 0; i < cycles; i++) { cars.map(car => car.update()); }
 
-    drawWalls();
-    // drawCheckpoints();
-    drawCars();
-
-    for (let i = 0; i < cycles; i++) {
-        cars.map(car => car.update());
+    if (frameCount - timer >= world.timeout && training) {
+        console.log('Timeout')
+        cars.map(car => car.running = false);
     }
+
+    if (training) { updateScores(); }
 
     if (cars.every(car => !car.running)) {
-        endEvaluation();
+        if (training) {
+            endEvaluation();
+            timer = frameCount;
+        } else {
+            runBestModel();
+        }
     }
-}
-
-var lastPoint = null;
-var lines = [];
-
-function mouseClicked() {
-    let x = mouseX;
-    let y = mouseY;
-
-    if (lastPoint) {
-        lines.push([...lastPoint, x, y]);
-    } 
-
-    lastPoint = [x, y]
 }
 
 function keyPressed() {
-    var jsonLines = JSON.stringify(lines);
-    console.log(jsonLines);
-
+    control();
 }

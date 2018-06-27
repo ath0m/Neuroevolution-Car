@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, angle = 0.0, genome) {
+    constructor(x, y, angle = 0.0, genome, scheme = null) {
         this.size = {
             width: 30,
             height: 15
@@ -8,30 +8,42 @@ class Car {
         this.position = createVector(x, y);
         this.angle = angle;
         this.velocity = 4;
+        this.steerLimit = [-PI/80, PI/80]
 
         this.score = 0;
         this.lastCheckpoint = -1;
 
         this.sensors = [
-            {angle:  0.0       , length: 300},
-            {angle:  PI / 7.0  , length: 200},
-            {angle: -PI / 7.0  , length: 200},
-            {angle:  PI / 3.0  , length: 120},
-            {angle: -PI / 3.0  , length: 120}
+            {angle:  0.0       , length: 200},
+            {angle:  PI / 7.0  , length: 150},
+            {angle: -PI / 7.0  , length: 150},
+            {angle:  PI / 3.0  , length: 70},
+            {angle: -PI / 3.0  , length: 70}
         ];
 
         this.brain = genome;
-        this.brain.score = 0;
+        this.brain.score = this.score;
+
+        if (scheme) {
+            this.size = scheme.size;
+            this.velocity = scheme.velocity;
+            this.steerLimit = scheme.steerLimit;
+            this.sensors = scheme.sensors;
+        }
     }
 
     collision() {
         let {x: posX, y: posY} = this.position;
         const {width: w, height: h} = this.size;
 
-        posX -= w / 2;
-        posY -= h / 2;
+        if (debug) {
+            push();
+            fill('green');
+            ellipse(posX, posY, w * 0.8);
+            pop();
+        }
 
-        const hit = walls.map(wall => collideLineRect(...wall, posX, posY, w, h))
+        const hit = world.walls.map(wall => collideLineCircle(...wall, posX, posY, w * 0.8))
                             .some(x => x);
         
         return hit;
@@ -44,7 +56,7 @@ class Car {
             const endX = this.position.x + cos(angle + this.angle) * length;
             const endY = this.position.y + sin(angle + this.angle) * length;
 
-            const distance = walls.map(wall => collideLineLine(...wall, startX, startY, endX, endY, true))
+            const distance = world.walls.map(wall => collideLineLine(...wall, startX, startY, endX, endY, true))
                                 .filter(({x, y}) => x && y)
                                 .reduce((prev, next) => {
                                     const d = dist(startX, startY, next.x, next.y);
@@ -81,23 +93,38 @@ class Car {
         }
 
         let steer = (this.think() - 1.0) / 100.;
-        // steer = map(steer, 0, 1, -PI/200, PI/200);
 
-        console.log(steer);
-        steer = constrain(steer, -PI/100, PI/100);
+        if (Number.isNaN(steer)) {
+            this.running = false;
+            return;
+        }
+
+        steer = constrain(steer, 0, 1);
+        steer = map(steer, 0, 1, ...this.steerLimit);
 
         this.angle -= steer;
 
         let dx = cos(this.angle) * this.velocity;
         let dy = sin(this.angle) * this.velocity;
 
+        // console.log(this.angle, dx, dy);
+        // console.log(this.angle);
+
+        // dx = constrain(dx, -10, 10);
+        // dy = constrain(dy, -10, 10);
+
         this.position.x += dx;
         this.position.y += dy;
 
-        this.updateScore();
+        // this.updateScore();
 
         if (this.collision()) {
             this.running = false;
+        }
+
+        if (this.running) {
+            this.score += 1;
+            this.brain.score = this.score;
         }
     }
 

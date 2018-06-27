@@ -1,12 +1,12 @@
 <html>
 
 <head>
-    <script src="http://d3js.org/d3.v3.min.js"></script>
-    <script src="http://marvl.infotech.monash.edu/webcola/cola.v3.min.js"></script>
+    <!-- <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="http://marvl.infotech.monash.edu/webcola/cola.v3.min.js"></script> -->
 
     <script src="https://rawgit.com/wagenaartje/neataptic/master/dist/neataptic.js"></script>
-    <script src="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.css">
+    <!-- <script src="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.js"></script> -->
+    <!-- <link rel="stylesheet" type="text/css" href="https://rawgit.com/wagenaartje/neataptic/master/graph/graph.css"> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/p5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/0.6.1/addons/p5.dom.min.js"></script>
@@ -19,21 +19,32 @@
     <div id="canvascontainer"></div>
     <p>
         speed:
-        <input id="speedSlider" type="range" min="1" max="100" value="1">
+        <input id="speedSlider" type="range" min="1" max="200" value="1">
         <span id="speed">1</span>
         <br/> high score:
         <span id="hs">0</span>
         <br/> all time high score:
         <span id="ahs">0</span>
-    </p>
-    <p>
-        <button id="best">run best so far</button>
+        <br/>
+        <select id="worlds">
+            <option value="1">World 1</option>
+            <option value="2">World 2</option>
+            <option value="3">World 3</option>
+        </select>
+        <br/>
+        <select id="models">
+            <option value="0">Current</option>
+            <option value="1">Model 1</option>
+        </select>
     </p>
 
+    <script src="src/sketch.js"></script>
+    <script src="src/models.js"></script>
+    <script src="src/worlds.js"></script>
     <script src="src/board.js"></script>
     <script src="src/vehicle.js"></script>
     <script src="src/neuroevolution.js"></script>
-    <script src="src/sketch.js"></script>
+    <script src="src/control.js"></script>
     <script src="src/draw.js"></script>
 </body>
 

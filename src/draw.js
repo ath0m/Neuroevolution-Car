@@ -1,4 +1,4 @@
-function drawWalls() {
+function drawWalls(walls) {
     push();
 
     stroke(255);
@@ -9,7 +9,7 @@ function drawWalls() {
     pop();
 }
 
-function drawCheckpoints() {
+function drawCheckpoints(checkpoints) {
     push();
 
     stroke(255, 255, 255, 40);
@@ -35,7 +35,7 @@ function drawCar(car) {
     pop();
 }
 
-function drawSensors(car) {
+function drawSensors(car, walls) {
     push();
 
     stroke(255, 255, 255, 100);
@@ -59,9 +59,20 @@ function drawSensors(car) {
     pop();
 }
 
-function drawCars() {
+function drawCars(cars, walls) {
     cars.map(car => {
-        drawCar(car);
-        drawSensors(car);
+        if (car.running || debug) {
+            drawCar(car);
+            drawSensors(car, walls);
+        }
     });
+}
+
+function followBestCar(cars) {
+    var car = cars.reduce((prev, next) => {
+        return prev.score > next.score ? prev : next
+    }, cars[0])
+
+    scale(4);
+    translate(-car.position.x + canvas.width / 4, -car.position.y + canvas.height / 4);
 }
