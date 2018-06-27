@@ -2,11 +2,13 @@
 
 ##### Celem projektu jest pobawienie się neuroewolucją i sprawdzenie jak sobie poradzi z problemem autonomicznej jazdy w bardzo prostym środowisku
 
+[https://ath0m.github.io/Neuroevolution-Car/](https://ath0m.github.io/Neuroevolution-Car/)
+
 ![](screenshots/screenshot1.PNG)
 
 
 
-### Symulator
+## Symulator
 
 Głównym elementem symulacji są samochodziki. Ich zadaniem jest przetrwać jak najdłużej na torze. W przypadku zetknięcia ze ściana są zatrzymywane, a ich punkty przestają być naliczne. Podstawową wiedzę o świecie czerpią z 5 czujników odelgłościowych o różnych długościach i ustawionych pod różnymi kątami. Wartości z czujników są wejściem do sieci neuronowej, a wyjście traktowane jest jako kąt skrętu. Samochody w obecnym projekcie mają stałą prędkość. 
 
@@ -20,7 +22,7 @@ Czujniki podają wartość minimalną ze swojej długość i odległości do naj
 
 Samochód ma stałą prędkość i mówi jedynie o jaki kąt chciałby skorygować swoją obecną trasę. Samochody nie widzą siebie nawzajem.
 
-### Panel
+## Panel
 
 Opis funkcji panelu
 
@@ -45,7 +47,7 @@ Skróty klawiszowe
 * `W` - pokazanie grafu sieci neuronowej najlepszego modelu z całej ewolucji
 * `E` - wyczyszczenie grafu (przyspiesza symulację)
 
-### Model
+## Model
 
 Ogólną ideą neuroewolucji jest generowanie sieci neuronowych włącznie z parametrami, topologią przy pomocy algorytmów ewoluchnych. 
 
@@ -81,16 +83,38 @@ Na początku dziecko dziedziczy liczbę komórek po lepszym z rodzicu (w przypad
 
 Jednym z najwiekszych wyzwań w przypadku generowania sieci neuronowej jakie napotkałem jest potrzeba interpretowania wyjścia. Ze względu na dynamiczne zmiany w strukturze sieci zmienia się dziedzina wyjścia, którą w moim przypadku trzeba przełożyć na kąt skrętu. Rozwiązuje to przy pomocy odpowiedniego przycynania wartości wynikowej i rzutowania na inną skalę.
 
-### Wyniki
+## Wyniki
 
-#### Tor 1
+### Tor 1
+
+##### Model - Track 1
 
 ![](screenshots/world1.gif)
 
-#### Tor 2
+Model trochę gorzej radzi sobie na torze 2 i nie radzi sobie na torze 3.
+
+### Tor 2
+
+##### Model - Track 2
 
 ![](screenshots/world2.gif)
 
-#### Tor 3
+Model radzi sobie również na torze 1, ale nie radzi sobie na torze 3, gdzie występują szybsze zakręty oraz zakręty w drugą stronę.
+
+### Tor 3
+
+##### Model - Track 3
 
 ![](screenshots/world3.gif)
+
+Model dobrze radzi sobie również na torze 1 i 2.
+
+### Wpadka
+
+![](screenshots/world1fun.gif)
+
+Jeśli damy modelowi zbyt dużo swobody wykorzysta to przeciwko nam :D. Rozwiązaniem tego jest ograniczenie maksymalnych kątów skrętu.
+
+## Podsumowanie
+
+Neuroewolucja poradziła sobie z postawionym przed nią problemem. Całkiem skutecznie generowała modele pozwalające przejechać zadaną trasę. Zadowalające jest to, że umiejętność przejechania trudniejszej trasy, pozwala na pokonanie innych, ale łatwiejszych lub podobnych tras. Dodatkowo można zwrócić uwagę na poziom skomplikowania sieci w zależność od trudności problemu. 
