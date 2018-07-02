@@ -1,6 +1,6 @@
 # Neuroevolution-Car
 
-##### Celem projektu jest pobawienie się neuroewolucją i sprawdzenie jak sobie poradzi z problemem autonomicznej jazdy w bardzo prostym środowisku
+**Celem projektu jest pobawienie się neuroewolucją i sprawdzenie jak sobie poradzi z problemem autonomicznej jazdy w bardzo prostym środowisku**
 
 [https://ath0m.github.io/Neuroevolution-Car/](https://ath0m.github.io/Neuroevolution-Car/)
 
@@ -47,19 +47,43 @@ Skróty klawiszowe
 * `W` - pokazanie grafu sieci neuronowej najlepszego modelu z całej ewolucji
 * `E` - wyczyszczenie grafu (przyspiesza symulację)
 
-## Model
+## Algorytm NEAT
 
 Ogólną ideą neuroewolucji jest generowanie sieci neuronowych włącznie z parametrami, topologią przy pomocy algorytmów ewoluchnych. 
 
 Do samej neuroewolucji skorzystałem z biblioteki **[Neataptic](https://wagenaartje.github.io/neataptic/)**. Wykorzystałem ją, ponieważ opiera się na dokumencie [Evolving Neural Networks through Augmenting Topologies ](http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf), z którego planowałem skorzystać.
 
-Szczegółowy opis działania biblioteki [Instinct: neuro-evolution on steroids](https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6).
-
 Wygenerowana sieć różni się od takich które znamy, a bardziej przypomina graf przepływów. Ogólnie istotniejsze są same komórki, a nie warstwy.
+
+Opis genotypu znajduje się w rozdziale 1: [Instinct: neuro-evolution on steroids](https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6)
 
 ![](screenshots/screenshot4.PNG)
 
-Ewolucja zaczyna się od prostej losowej sieci o 5 wejściach i 1 wyjściu. Następnie przeprowadzane są operacja krzyżowania i mutacji.
+Sam algorytm opiera się bezpośrednio na algorytmie **SGA**
+
+##### Populacja początkowa:
+
+Losowa sieć o stałej liczbie wejść i wyjść
+
+##### Funkcja oceny:
+
+Liczba iteracji symulatora do czasu kolizji samochodu z otoczeniem. Chcemy tę wartość maksymalizować
+
+**Selekcja:**
+
+Początkowa część populacji wybierana jest na zasadzie elitaryzmu, a reszta przy użyciu ruletki
+
+##### Krzyżowanie:
+
+Opis znajduje się w rozdziale 2: [Instinct: neuro-evolution on steroids](https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6)
+
+**Mutacja**:
+
+Dokładny opis mutacji znajduje się w rozdziale 3: [Instinct: neuro-evolution on steroids](https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6)
+
+## Model
+
+Ewolucja zaczyna się od prostej losowej sieci o 5 wejściach i 1 wyjściu.
 
 **Operacje mutacji**:
 
@@ -71,10 +95,6 @@ Ewolucja zaczyna się od prostej losowej sieci o 5 wejściach i 1 wyjściu. Nast
 * zmiana funkcji aktywacji
 * usuwanie komórek, połączeń, bramek
 
-**Operacja krzyżowania**
-
-Na początku dziecko dziedziczy liczbę komórek po lepszym z rodzicu (w przypadku remisu po losowym). Następnie komórki są wybierane po kolei z losowego rodzica. Połączenia dzielone są na wspólne (występują w obu rodzicach) i dodatkowe. Ze wspólnej póli wybierane są losowo, a z dodatkowej tylko po lepszym rodzicu.
-
 **Dodatkowe parametry:**
 
 * rozmiar populacji: 20
@@ -82,6 +102,8 @@ Na początku dziecko dziedziczy liczbę komórek po lepszym z rodzicu (w przypad
 * elitaryzm: 5
 
 Jednym z najwiekszych wyzwań w przypadku generowania sieci neuronowej jakie napotkałem jest potrzeba interpretowania wyjścia. Ze względu na dynamiczne zmiany w strukturze sieci zmienia się dziedzina wyjścia, którą w moim przypadku trzeba przełożyć na kąt skrętu. Rozwiązuje to przy pomocy odpowiedniego przycynania wartości wynikowej i rzutowania na inną skalę.
+
+
 
 ## Wyniki
 
@@ -117,4 +139,10 @@ Jeśli damy modelowi zbyt dużo swobody wykorzysta to przeciwko nam :D. Rozwiąz
 
 ## Podsumowanie
 
-Neuroewolucja poradziła sobie z postawionym przed nią problemem. Całkiem skutecznie generowała modele pozwalające przejechać zadaną trasę. Zadowalające jest to, że umiejętność przejechania trudniejszej trasy, pozwala na pokonanie innych, ale łatwiejszych lub podobnych tras. Dodatkowo można zwrócić uwagę na poziom skomplikowania sieci w zależność od trudności problemu. 
+Neuroewolucja poradziła sobie z postawionym przed nią problemem. Całkiem skutecznie generowała modele pozwalające przejechać zadaną trasę. Zadowalające jest to, że umiejętność przejechania trudniejszej trasy, pozwala na pokonanie innych. Dodatkowo można zwrócić uwagę na poziom skomplikowania sieci w zależność od trudności problemu. 
+
+## Bibliografia
+
+1. [**Evolving Neural Networks through Augmenting Topologies**](http://nn.cs.utexas.edu/downloads/papers/stanley.ec02.pdf), Kenneth O. Stanley, Risto Miikkulainem
+2. [**Instinct: neuro-evolution on steroids**](https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6), Thomas Wagenaar
+3. [**Neataptic**](https://wagenaartje.github.io/neataptic/)
