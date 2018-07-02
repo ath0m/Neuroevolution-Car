@@ -47,6 +47,11 @@ Skróty klawiszowe
 * `W` - pokazanie grafu sieci neuronowej najlepszego modelu z całej ewolucji
 * `E` - wyczyszczenie grafu (przyspiesza symulację)
 
+## Uruchomienie
+
+Wystarczy otworzyć plik `index.html` w dowolnej przeglądarce. 
+Ewentualnie skorzystać z hostowanej wersji [https://ath0m.github.io/Neuroevolution-Car/](https://ath0m.github.io/Neuroevolution-Car/)
+
 ## Algorytm NEAT
 
 Ogólną ideą neuroewolucji jest generowanie sieci neuronowych włącznie z parametrami, topologią przy pomocy algorytmów ewoluchnych. 
@@ -69,7 +74,7 @@ Losowa sieć o stałej liczbie wejść i wyjść
 
 Liczba iteracji symulatora do czasu kolizji samochodu z otoczeniem. Chcemy tę wartość maksymalizować
 
-**Selekcja:**
+##### Selekcja:
 
 Początkowa część populacji wybierana jest na zasadzie elitaryzmu, a reszta przy użyciu ruletki
 
@@ -77,7 +82,7 @@ Początkowa część populacji wybierana jest na zasadzie elitaryzmu, a reszta p
 
 Opis znajduje się w rozdziale 2: [Instinct: neuro-evolution on steroids](https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6)
 
-**Mutacja**:
+##### Mutacja:
 
 Dokładny opis mutacji znajduje się w rozdziale 3: [Instinct: neuro-evolution on steroids](https://towardsdatascience.com/neuro-evolution-on-steroids-82bd14ddc2f6)
 
